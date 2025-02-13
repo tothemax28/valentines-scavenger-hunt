@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Scavenger Hunt 💖</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #ffe6e9;
+            color: #d6336c;
+            padding: 20px;
+        }
+        #game-container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            font-size: 28px;
+        }
+        #clue-box {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            border: 2px solid #d6336c;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #d6336c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #b52b5b;
+        }
+        #message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>💖 Valentine's Day Scavenger Hunt 💖</h1>
+    <div id="game-container">
+        <div id="clue-box">Clue: What day is Valentine's Day celebrated?</div>
+        <input type="text" id="answer" placeholder="Type your answer here">
+        <button onclick="checkAnswer()">Submit</button>
+        <div id="message"></div>
+    </div>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <script>
+        const clues = [
+            { question: "What day is Valentine's Day celebrated?", answer: "February 14" },
+            { question: "What color is most associated with Valentine's Day?", answer: "Red" },
+            { question: "Which Roman god is known for love and arrows?", answer: "Cupid" }
+        ];
+
+        let currentClue = 0;
+
+        function checkAnswer() {
+            let userAnswer = document.getElementById("answer").value.trim().toLowerCase();
+            let correctAnswer = clues[currentClue].answer.toLowerCase();
+
+            if (userAnswer === correctAnswer) {
+                currentClue++;
+                document.getElementById("message").innerText = "✅ Correct! Here's the next clue.";
+                document.getElementById("message").style.color = "green";
+
+                setTimeout(() => {
+                    if (currentClue < clues.length) {
+                        document.getElementById("clue-box").innerText = "Clue: " + clues[currentClue].question;
+                        document.getElementById("answer").value = ""; // Clear input box
+                        document.getElementById("message").innerText = "";
+                    } else {
+                        document.getElementById("clue-box").innerText = "🎉 Congratulations! You completed the scavenger hunt!";
+                        document.getElementById("answer").style.display = "none";
+                        document.getElementById("message").innerText = "";
+                        startConfetti();
+                    }
+                }, 1000);
+            } else {
+                document.getElementById("message").innerText = "❌ Incorrect. Try again!";
+                document.getElementById("message").style.color = "red";
+            }
+        }
+
+        // 🎉 Confetti Effect
+        function startConfetti() {
+            let confettiCanvas = document.getElementById("confetti-canvas");
+            let ctx = confettiCanvas.getContext("2d");
+
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+
+            let confettiPieces = [];
+            for (let i = 0; i < 100; i++) {
+                confettiPieces.push({
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * window.innerHeight - window.innerHeight,
+                    color: ["#ff4d6d", "#ff85a1", "#ffccd5", "#ffebf1"][Math.floor(Math.random() * 4)],
+                    size: Math.random() * 10 + 5,
+                    speed: Math.random() * 3 + 2
+                });
+            }
+
+            function drawConfetti() {
+                ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                confettiPieces.forEach((p) => {
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    p.y += p.speed;
+                    if (p.y > confettiCanvas.height) p.y = 0;
+                });
+                requestAnimationFrame(drawConfetti);
+            }
+            drawConfetti();
+        }
+    </script>
+
+</body>
+</html>
