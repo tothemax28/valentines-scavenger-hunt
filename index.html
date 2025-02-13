@@ -17,6 +17,7 @@
             align-items: center; /* Center horizontally */
             height: 100vh; /* Make the body take the full viewport height */
             margin: 0; /* Remove default margin */
+            box-sizing: border-box; /* Ensure padding doesn't affect the layout */
         }
         #game-container {
             max-width: 500px;
@@ -29,7 +30,33 @@
         }
         h1 {
             font-size: 28px;
+            margin-top: 0; /* Remove default margin from h1 */
         }
+        /* For mobile devices, adjust padding and margins */
+@media screen and (max-width: 768px) {
+    body {
+        padding-top: 20px; /* Add some top padding to avoid header being too close to the top */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding-top: 40px; /* Increase padding on very small screens for better spacing */
+    }
+
+    h1 {
+        font-size: 24px; /* Adjust font size for smaller screens */
+    }
+
+    #gif {
+        max-width: 100%;
+    }
+
+    input[type="text"], button {
+        font-size: 14px;
+        padding: 6px;
+    }
+}
         #clue-box {
             font-size: 20px;
             margin-bottom: 15px;
