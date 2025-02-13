@@ -58,17 +58,25 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        #gif {
+            margin-left: 313px;
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
 
-    <h1>💖 Valentine's Day Scavenger Hunt 💖</h1>
+    <h1>💖 Meriya and Max's Valentines Day Scavenger Hunt! 💖</h1>
     <div id="game-container">
         <div id="clue-box">Clue: What day is Valentine's Day celebrated?</div>
         <input type="text" id="answer" placeholder="Type your answer here">
         <button onclick="checkAnswer()">Submit</button>
         <div id="message"></div>
     </div>
+
+    <img id="gif" src="valentines-scavenger-hunt/heart.gif" alt="Valentine's GIF">
 
     <canvas id="confetti-canvas"></canvas>
 
