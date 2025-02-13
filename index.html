@@ -11,6 +11,12 @@
             background-color: #ffe6e9;
             color: #d6336c;
             padding: 20px;
+            display: flex; /* Activate flexbox */
+            flex-direction: column; /* Stack items vertically */
+            justify-content: center; /* Center vertically */
+            align-items: center; /* Center horizontally */
+            height: 100vh; /* Make the body take the full viewport height */
+            margin: 0; /* Remove default margin */
         }
         #game-container {
             max-width: 500px;
@@ -59,7 +65,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
         #gif {
-            margin-left: 313px;
             margin-top: 20px;
             max-width: 100%;
             height: auto;
