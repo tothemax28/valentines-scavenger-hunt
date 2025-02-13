@@ -19,6 +19,7 @@
             height: 100vh; /* Make the body take the full viewport height */
             margin: 0; /* Remove default margin */
             box-sizing: border-box; /* Ensure padding doesn't affect the layout */
+            position: relative; /* Add relative positioning to the body for absolute positioning of elements */
         }
         #game-container {
             max-width: 500px;
@@ -36,13 +37,13 @@
         /* For mobile devices, adjust padding and margins */
 @media screen and (max-width: 768px) {
     body {
-        padding-top: 0px; /* Add some top padding to avoid header being too close to the top */
+        padding-top: 10px; /* Add some top padding to avoid header being too close to the top */
     }
 }
 
 @media screen and (max-width: 480px) {
     body {
-        padding-top: 0px; /* Increase padding on very small screens for better spacing */
+        padding-top: 10px; /* Increase padding on very small screens for better spacing */
     }
 
     h1 {
@@ -96,6 +97,15 @@
             margin-top: 20px;
             max-width: 100%;
             height: auto;
+        }
+        #confetti-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10; /* Make sure confetti appears above the GIF */
+            pointer-events: none;
         }
     </style>
 </head>
