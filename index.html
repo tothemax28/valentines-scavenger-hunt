@@ -113,7 +113,7 @@
 
     <h1>💖 Meriya and Max's Valentines Day Scavenger Hunt! 💖</h1>
     <div id="game-container">
-        <div id="clue-box">Clue: We made something custom as a halloween date night. Get one and type in the word on top of the box.</div>
+        <div id="clue-box">Clue: What do our painting date and pickleball have in common? Find it and type the other type of court there that corresponds to my sporting past… .</div>
         <input type="text" id="answer" placeholder="Type your answer here">
         <button onclick="checkAnswer()">Submit</button>
         <div id="message"></div>
@@ -125,9 +125,15 @@
 
     <script>
         const clues = [
-            { question: "We made something custom as a halloween date night. Get one and type in the word on top of the box.", answer: "Pizza" },
-            { question: "What color is most associated with Valentine's Day?", answer: "Red" },
-            { question: "Which Roman god is known for love and arrows?", answer: "Cupid" }
+            { question: "What do our painting date and pickleball have in common? Find it and type the other type of court there that corresponds to my sporting past… ", answer: "Pool" },
+            { question: "I always loved to watch you perform for color guard and I’m sad I don’t get to anymore 😔 If you were on the team here, find the northern point where I could watch you and type the color of the track.", answer: "Blue" },
+            { question: "Buying jewelry is pretty tough and I’ve had to figure out some of your preferences. if I don’t want to mess up your consistency and I need to take care of some business, where should I go? Head there and enter what you can either park or store in a locker.", answer: "Bicycle" },
+            { question: "I love you a bunch. So much it seems to make time stand still. Find the place that reminds me of this, and type in the name of David Smith’s.", answer: "Cubi XX" },
+            { question: "Back home, you used to facetime me and watch me do something pretty often. Well, maybe watch isn’t quite the right word. Find where I might do that here, and type in the number of steps up to the glass walled entrance.", answer: "Four" },
+            { question: "So we still haven’t finished Pride and Prejudice and I forgot the book back home 😳 Whoops! Find where I should go if I need the book and want to keep company with Bradbury. It’s under something… what?", answer: "Construction" },
+            { question: "Picking perfect places is pretty painful. perhaps players at _____ ______ might point (guard) the way to our next location? (first name of 0)", answer: "Kobe" },
+            { question: "You were scary good at making something with me on an at home date with me a while back. Where can we get one of those at this late hour? Get one and type the extra thing Max gets along with it. ", answer: "Ranch" },
+            
         ];
 
         let currentClue = 0;
@@ -146,12 +152,13 @@
                         document.getElementById("clue-box").innerText = "Clue: " + clues[currentClue].question;
                         document.getElementById("answer").value = ""; // Clear input box
                         document.getElementById("message").innerText = "";
-                    } else {
-                        document.getElementById("clue-box").innerText = "🎉 Congratulations! You completed the scavenger hunt!";
-                        document.getElementById("answer").style.display = "none";
-                        document.getElementById("message").innerText = "";
-                        startConfetti();
-                    }
+            } else {
+                document.getElementById("clue-box").innerText = "🎉 Congratulations! You made it to the end of the hunt. Return to Max’s room to receive your prize…";
+                document.getElementById("answer").style.display = "none"; // Hide input field
+                document.querySelector("button").style.display = "none"; // Hide the submit button
+                document.getElementById("message").innerText = "";
+                startConfetti(); // Start confetti celebration!
+}
                 }, 1000);
             } else {
                 document.getElementById("message").innerText = "❌ Incorrect. Try again!";
